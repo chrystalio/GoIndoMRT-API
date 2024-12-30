@@ -26,6 +26,7 @@ func GetAllStations(c *gin.Context, service Service) {
 			Message: err.Error(),
 			Data:    nil,
 		})
+		return
 	}
 
 	c.JSON(http.StatusOK, response.APIResponse{
@@ -33,4 +34,5 @@ func GetAllStations(c *gin.Context, service Service) {
 		Message: "Successfully get all stations",
 		Data:    datas,
 	})
+
 }
