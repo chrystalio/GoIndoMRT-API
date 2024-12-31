@@ -31,26 +31,21 @@ func (s *service) GetAllStations() (response []StationResponse, err error) {
 	url := "https://www.jakartamrt.co.id/id/val/stasiuns"
 
 	byteResponse, err := client.DoRequest(s.client, url)
-
 	if err != nil {
 		return
 	}
 
 	var stations []Station
 	err = json.Unmarshal(byteResponse, &stations)
+	if err != nil {
+		return
+	}
 
 	for _, item := range stations {
-		response = append(response, StationResponse{
-			Id:       item.Id,
-			Name:     item.Name,
-			Order:    item.Order,
-			LocalMap: item.LocalMap,
-			Banner:   item.Banner,
-		})
+		response = append(response, StationResponse(item))
 	}
 
 	return
-
 }
 
 func (s *service) CheckSchedulesByStation(id string) (response []ScheduleResponse, err error) {
