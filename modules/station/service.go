@@ -41,8 +41,11 @@ func (s *service) GetAllStations() (response []StationResponse, err error) {
 
 	for _, item := range stations {
 		response = append(response, StationResponse{
-			Id:   item.Id,
-			Name: item.Name,
+			Id:       item.Id,
+			Name:     item.Name,
+			Order:    item.Order,
+			LocalMap: item.LocalMap,
+			Banner:   item.Banner,
 		})
 	}
 
