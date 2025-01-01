@@ -10,6 +10,8 @@ import (
 	"github.com/chrystalio/GoIndoMRT-API/common/client"
 )
 
+const baseUrl = "https://www.jakartamrt.co.id/id/val/stasiuns"
+
 type Service interface {
 	GetAllStations() (response []StationResponse, err error)
 	CheckSchedulesByStation(id string) (response []ScheduleResponse, err error)
@@ -28,9 +30,8 @@ func NewService() Service {
 }
 
 func (s *service) GetAllStations() (response []StationResponse, err error) {
-	url := "https://www.jakartamrt.co.id/id/val/stasiuns"
 
-	byteResponse, err := client.DoRequest(s.client, url)
+	byteResponse, err := client.DoRequest(s.client, baseUrl)
 	if err != nil {
 		return
 	}
@@ -49,9 +50,8 @@ func (s *service) GetAllStations() (response []StationResponse, err error) {
 }
 
 func (s *service) CheckSchedulesByStation(id string) (response []ScheduleResponse, err error) {
-	url := "https://www.jakartamrt.co.id/id/val/stasiuns"
 
-	byteResponse, err := client.DoRequest(s.client, url)
+	byteResponse, err := client.DoRequest(s.client, baseUrl)
 
 	if err != nil {
 		return
